@@ -10,7 +10,7 @@
       type: 'GET',
       url: serverUrl,
       success: (data) => SwimTeam.move(data),
-      // complete: () => setTimeout(getSwimCommand, 5000),
+      complete: () => setTimeout(getSwimCommand, 4000),
       error: (data) => console.error(`Failed to fetch ${data}`)
     })
   }
@@ -25,8 +25,6 @@
   //     error: (data) => console.error(`Failed to fetch ${data}`)
   //   })
   // }
-  
-
 
 
 
