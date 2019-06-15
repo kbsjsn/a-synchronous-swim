@@ -16,20 +16,16 @@ module.exports.initialize = queue => {
 console.log(module.exports.backgroundImageFile)
 module.exports.router = (req, res, next = () => {}) => {
   console.log("Serving request type " + req.method + " for url " + req.url);
-  // if (req.method === "GET" && req.url === '/') {
-  //   // keypressHandler.initialize(data => console.log("RESPONSE: ", data));
-  //   // let swimCommands = ['up', 'down', 'left', 'right'];
-  //   // let randomSwimIndex = Math.floor(Math.random() * swimCommands.length);
-  //   // res.end(queue.dequeue());
-  //   res.writeHead(200, headers);
-  //   res.end(queue.dequeue())
+  if (req.method === "GET" && req.url === '/') {
+    // keypressHandler.initialize(data => console.log("RESPONSE: ", data));
+    // let swimCommands = ['up', 'down', 'left', 'right'];
+    // let randomSwimIndex = Math.floor(Math.random() * swimCommands.length);
+    // res.end(queue.dequeue());
+    res.writeHead(200, headers);
+    res.end(queue.dequeue())
     
-  // } else
+  } else
   if (req.url === '/background.jpg') {
-
-    
-    // // res.status(404)
-    // res.end()
 
     console.log('Opening file')
     fs.open(module.exports.backgroundImageFile, 'r', function(err, fd) {
@@ -44,8 +40,6 @@ module.exports.router = (req, res, next = () => {}) => {
       }
  
     })
-
-    
   }
   if (req.method === "POST") {
   
