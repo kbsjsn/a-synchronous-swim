@@ -9,11 +9,26 @@
     $.ajax({
       type: 'GET',
       url: serverUrl,
-      success: (data) => SwimTeam.move(data)
-      // complete: () => setTimeout(getSwimCommand, 1000)
+      success: (data) => SwimTeam.move(data),
+      // complete: () => setTimeout(getSwimCommand, 5000),
+      error: (data) => console.error(`Failed to fetch ${data}`)
     })
   }
   getSwimCommand();
+
+  // const getBackground = (data) => {
+  //   $.ajax({
+  //     type: 'GET',
+  //     url: 'http://127.0.0.1:3000/water-lg.multipart',
+  //     //success: (data) => $('.background').css('background-image', data),
+  //     // complete: () => setTimeout(getSwimCommand, 5000),
+  //     error: (data) => console.error(`Failed to fetch ${data}`)
+  //   })
+  // }
+  
+
+
+
 
   // const sendSwimCommand = (direction, successCB, errorCB=null) => {
   //   $.ajax({
