@@ -12,6 +12,8 @@ const isValidMessage = (message) => {
   return _.contains(validMessages, message);
 };
 
+const queue = require('../js/messageQueue');
+
 const logKeypress = (key) => {
   // in raw-mode it's handy to see what's been typed
   // when not in raw mode, the terminal will do this for us
@@ -38,6 +40,7 @@ module.exports.initialize = (callback) => {
     // check to see if the keypress itself is a valid message
     if (isValidMessage(key.name)) {
       callback(key.name);
+      // queue.enqueue(key.name)
       return; // don't do any more processing on this key
     }
     
