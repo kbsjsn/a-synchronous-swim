@@ -16,17 +16,8 @@ module.exports.initialize = queue => {
 console.log(module.exports.backgroundImageFile)
 module.exports.router = (req, res, next = () => {}) => {
   console.log("Serving request type " + req.method + " for url " + req.url);
-  if (req.method === "GET" && req.url === '/') {
-    // keypressHandler.initialize(data => console.log("RESPONSE: ", data));
-    // let swimCommands = ['up', 'down', 'left', 'right'];
-    // let randomSwimIndex = Math.floor(Math.random() * swimCommands.length);
-    // res.end(queue.dequeue());
-    res.writeHead(200, headers);
-    res.end(queue.dequeue())
-    
-  } else
-  if (req.url === '/background.jpg') {
-
+  if (req.method === "GET") {
+    if (req.url === '/background.jpg') {
     console.log('Opening file')
     fs.open(module.exports.backgroundImageFile, 'r', function(err, fd) {
       if(err) {
@@ -35,12 +26,28 @@ module.exports.router = (req, res, next = () => {}) => {
       } else { 
         console.log('found');
         res.writeHead(200, {'content-type':'image/jpeg'});
-        res.write('water-lg.multipart');
-        res.end('working!');
+        res.end(img,'binary');
       }
- 
     })
+  } else {
+    res.writeHead(200, headers);
+    res.end(queue.dequeue())
   }
+}
+  
+  
+  
+  
+  //  && req.url === '/') {
+  //   // keypressHandler.initialize(data => console.log("RESPONSE: ", data));
+  //   // let swimCommands = ['up', 'down', 'left', 'right'];
+  //   // let randomSwimIndex = Math.floor(Math.random() * swimCommands.length);
+  //   // res.end(queue.dequeue());
+  //   res.writeHead(200, headers);
+  //   res.end(queue.dequeue())
+    
+  } else
+  
   if (req.method === "POST") {
   
       req.on("error", () => {
